@@ -30,4 +30,5 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build --build-arg MAVEN_CACHE=~/.m2/repository -t my-maven-verify .
+          # docker build --build-arg MAVEN_CACHE=~/.m2/repository -t my-maven-verify .
+          docker build .
