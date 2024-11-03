@@ -11,23 +11,23 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
 
-      # - name: Set up JDK 15
-      #   uses: actions/setup-java@v4
-      #   with:
-      #     java-version: '15'
-      #     distribution: 'adopt'
+      - name: Set up JDK 15
+        uses: actions/setup-java@v4
+        with:
+          java-version: '15'
+          distribution: 'adopt'
 
-      # # - name: Cache Maven dependencies
-      # #   uses: actions/cache@v4
-      # #   with:
-      # #     path: ~/.m2/repository
-      # #     key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-      # #     restore-keys: |
-      # #       ${{ runner.os }}-maven-
+      - name: Cache local Maven repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
       # - name: Run Maven verify
       #   run: mvn verify
 
       - name: Build Docker image
         run: |
-          docker build --build-arg MAVEN_CACHE=~/.m2/repository11111 -t my-maven-verify .
+          docker build --build-arg MAVEN_CACHE=/github/home/.m2/repository -t my-maven-verify .
