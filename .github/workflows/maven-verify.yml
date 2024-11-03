@@ -17,18 +17,18 @@ jobs:
           java-version: '15'
           distribution: 'adopt'
 
-      - name: Cache Maven dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+      # - name: Cache Maven dependencies
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~/.m2/repository
+      #     key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-maven-
 
       - name: Run Maven verify
         run: mvn verify
 
       - name: Build Docker image
         run: |
-          # docker build --build-arg MAVEN_CACHE=~/.m2/repository -t my-maven-verify .
-          docker build .
+          docker build --build-arg MAVEN_CACHE=~/.m2/repository -t my-maven-verify .
+          # docker build .
