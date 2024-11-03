@@ -28,4 +28,4 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build --build-arg MAVEN_CACHE=/github/home/.m2/repository -t my-maven-verify .
+          docker build --build-arg MAVEN_CACHE_DIR=/root/.m2/repository -t my-maven-verify .
