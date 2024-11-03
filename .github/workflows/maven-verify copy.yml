@@ -1,4 +1,4 @@
-name: Maven Verify
+name: Maven Verify 2
 
 on:
   workflow_dispatch: 
@@ -30,4 +30,4 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build .
+          docker build --build-arg MAVEN_CACHE=~/.m2/repository11111 -t my-maven-verify .
