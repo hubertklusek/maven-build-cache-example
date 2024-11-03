@@ -26,5 +26,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Get mvn modules
+        run: |
+          ./mvnw dependency:resolve-plugins dependency:resolve dependency:go-offline
+
+      - name: Copy artifacts
+        run: |
+          cp -R ~/.m2 ./m2
+
       - name: Build Docker image
-        run: ls ~/.m2/repository
+        run: docker build --build-arg MAVEN_CACHE_DIR=~/.m2/repository -t my-maven-verify .
