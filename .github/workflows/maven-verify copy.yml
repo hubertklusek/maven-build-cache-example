@@ -26,6 +26,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Copy Maven cache to workspace
+        run: cp -r ~/.m2/repository ./.m2/repository
+
       - name: Build Docker image
-        run: |
-          docker build --build-arg MAVEN_CACHE_DIR=/root/.m2/repository -t my-maven-verify .
+        run: docker build --build-arg MAVEN_CACHE_DIR=./.m2/repository -t my-maven-verify .
