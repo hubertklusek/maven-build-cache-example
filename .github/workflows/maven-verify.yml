@@ -26,10 +26,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      # - name: Copy artifacts
-      #   run: |
-      #     cp -R ~/.m2 ./m2
+      - name: Copy artifacts
+        run: |
+          cp -R ~/.m2 ./m2
 
       - name: Build Docker image
-        run: docker build -t crm --build-arg BUILD_STAGE=default .
+        run: docker build -t crm --build-arg BUILD_STAGE=cicd .
 
