@@ -14,8 +14,6 @@ FROM base AS cicd
 
 COPY m2 /root/.m2
 
-# RUN mv /root/m2 /root/.m2
-
 RUN mvn verify
 
 
