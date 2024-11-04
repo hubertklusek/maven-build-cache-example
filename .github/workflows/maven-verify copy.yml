@@ -35,4 +35,5 @@ jobs:
           cp -R ~/.m2 ./m2
 
       - name: Build Docker image
-        run: docker build --build-arg MAVEN_CACHE_DIR=~/.m2/repository -t my-maven-verify .
+        run: docker build -t crm --build-arg BUILD_STAGE=cicd .
+
