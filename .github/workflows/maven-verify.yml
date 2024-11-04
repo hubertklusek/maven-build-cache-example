@@ -31,5 +31,5 @@ jobs:
           cp -R ~/.m2 ./m2
 
       - name: Build Docker image
-        run: docker build -t crm --build-arg BUILD_STAGE=cicd .
+        run: docker build -t crm --build-arg BUILD_STAGE=cicd --build-arg BUILD_STAGE_2=cicd.
 
